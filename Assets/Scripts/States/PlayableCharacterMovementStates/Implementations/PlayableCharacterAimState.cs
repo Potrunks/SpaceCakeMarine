@@ -3,7 +3,7 @@ using Assets.Scripts.States.PlayableCharacterMovementStates.Interfaces;
 
 namespace Assets.Scripts.States.PlayableCharacterMovementStates.Implementations
 {
-    public class PlayableCharacterStopState : PlayableCharacterMovementState
+    public class PlayableCharacterAimState : PlayableCharacterMovementState
     {
         public override IPlayableCharacterMovementState CheckingStateModification(PlayableCharacterController playableCharacterController)
         {
@@ -12,7 +12,7 @@ namespace Assets.Scripts.States.PlayableCharacterMovementStates.Implementations
 
         public override void OnEnter(PlayableCharacterController playableCharacterController)
         {
-            playableCharacterController.Animator.Play("Idle");
+            playableCharacterController.Animator.Play("Aim");
         }
 
         public override void OnExit(PlayableCharacterController playableCharacterController)
@@ -27,8 +27,8 @@ namespace Assets.Scripts.States.PlayableCharacterMovementStates.Implementations
                 case PlayableCharacterAction.MOVE:
                     NextState = new PlayableCharacterRunState();
                     break;
-                case PlayableCharacterAction.AIM:
-                    NextState = new PlayableCharacterAimState();
+                case PlayableCharacterAction.STOP:
+                    NextState = new PlayableCharacterStopState();
                     break;
                 default:
                     break;

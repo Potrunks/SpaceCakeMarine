@@ -25,6 +25,7 @@ public class PlayableCharacterController : MonoBehaviour
     private float _refVelocity;
     private IPlayableCharacterMovementState _currentMovementState = new PlayableCharacterStopState();
     private IPlayableCharacterMovementState _nextMovementState;
+    private bool _isAiming = false;
 
     private void FixedUpdate()
     {
@@ -43,7 +44,7 @@ public class PlayableCharacterController : MonoBehaviour
         }
         else
         {
-            _currentMovementState.PerformingAction(PlayableCharacterAction.STOP);
+            _currentMovementState.PerformingAction(_isAiming ? PlayableCharacterAction.AIM : PlayableCharacterAction.STOP);
         }
 
         _nextMovementState = _currentMovementState.CheckingStateModification(this);
@@ -58,5 +59,15 @@ public class PlayableCharacterController : MonoBehaviour
     public void Move(CallbackContext context)
     {
         _inputMoveValue = context.ReadValue<Vector2>();
+    }
+
+    public void Aim()
+    {
+        _isAiming = true;
+    }
+
+    public void StopAim()
+    {
+        _isAiming = false;
     }
 }

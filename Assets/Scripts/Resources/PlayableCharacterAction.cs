@@ -3,6 +3,10 @@
     public enum PlayableCharacterAction
     {
         MOVE,
-        STOP
+        STOP,
+        AIM,
+        FIRE,
+        STOP_AIM,
+        STOP_FIRE
     }
 }

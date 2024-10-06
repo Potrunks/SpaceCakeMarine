@@ -27,6 +27,9 @@ namespace Assets.Scripts.States.PlayableCharacterMovementStates.Implementations
                 case PlayableCharacterAction.STOP:
                     NextState = new PlayableCharacterStopState();
                     break;
+                case PlayableCharacterAction.AIM:
+                    NextState = new PlayableCharacterAimState();
+                    break;
                 default:
                     break;
             }
