@@ -19,6 +19,18 @@ public class PlayableCharacterFightSystem : MonoBehaviour
     [field: SerializeField]
     public GameEvent OnPlayerFireRelease { get; private set; }
 
+    [field: SerializeField]
+    public GameEvent OnPlayerAimFireInput { get; private set; }
+
+    [field: SerializeField]
+    public GameEvent OnPlayerAimFireRelease { get; private set; }
+
+    [field: SerializeField]
+    public GameEvent OnPlayerFireAimInput { get; private set; }
+
+    [field: SerializeField]
+    public GameEvent OnPlayerFireAimRelease { get; private set; }
+
     private IPlayableCharacterFightPostureState _currentFightPostureState = new PlayableCharacterStopPostureState();
     private IPlayableCharacterFightPostureState _nextFightPostureState;
 

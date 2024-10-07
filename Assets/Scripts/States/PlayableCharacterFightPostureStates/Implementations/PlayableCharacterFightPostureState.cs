@@ -6,7 +6,6 @@ namespace Assets.Scripts.States.PlayableCharacterFightPostureStates.Implementati
     public abstract class PlayableCharacterFightPostureState : IPlayableCharacterFightPostureState
     {
         public IPlayableCharacterFightPostureState NextState { get; set; }
-        public PlayableCharacterAction NextInput { get; set; }
         public abstract IPlayableCharacterFightPostureState CheckingStateModification(PlayableCharacterFightSystem playableCharacterFightSystem);
         public abstract void OnEnter(PlayableCharacterFightSystem playableCharacterFightSystem);
         public abstract void OnExit(PlayableCharacterFightSystem playableCharacterFightSystem);

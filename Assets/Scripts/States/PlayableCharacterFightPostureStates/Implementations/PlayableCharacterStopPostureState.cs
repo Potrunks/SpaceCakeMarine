@@ -17,22 +17,19 @@ namespace Assets.Scripts.States.PlayableCharacterFightPostureStates.Implementati
 
         public override void OnExit(PlayableCharacterFightSystem playableCharacterFightSystem)
         {
-            switch (NextInput)
+            if (NextState.GetType() == typeof(PlayableCharacterAimPostureState))
             {
-                case PlayableCharacterAction.AIM:
-                    playableCharacterFightSystem.OnPlayerAimInput.Raise();
-                    break;
-                case PlayableCharacterAction.FIRE:
-                    playableCharacterFightSystem.OnPlayerFireInput.Raise();
-                    break;
-                default:
-                    break;
+                playableCharacterFightSystem.OnPlayerAimInput.Raise();
+            }
+
+            if (NextState.GetType() == typeof(PlayableCharacterFirePostureState))
+            {
+                playableCharacterFightSystem.OnPlayerFireInput.Raise();
             }
         }
 
         public override void PerformingAction(PlayableCharacterAction action)
         {
-            NextInput = action;
             switch (action)
             {
                 case PlayableCharacterAction.AIM:
