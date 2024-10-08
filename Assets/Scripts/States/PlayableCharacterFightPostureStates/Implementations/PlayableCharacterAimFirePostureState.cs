@@ -12,11 +12,13 @@ namespace Assets.Scripts.States.PlayableCharacterFightPostureStates.Implementati
 
         public override void OnEnter(PlayableCharacterFightSystem playableCharacterFightSystem)
         {
-
+            playableCharacterFightSystem.OnPlayerUsingPrecisionGun.Raise(playableCharacterFightSystem.Gun);
         }
 
         public override void OnExit(PlayableCharacterFightSystem playableCharacterFightSystem)
         {
+            playableCharacterFightSystem.OnPlayerStopUsingGun.Raise();
+
             if (NextState.GetType() == typeof(PlayableCharacterAimPostureState))
             {
                 playableCharacterFightSystem.OnPlayerAimFireRelease.Raise();
