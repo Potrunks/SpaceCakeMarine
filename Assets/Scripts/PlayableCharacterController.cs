@@ -1,7 +1,9 @@
+using Assets.Scripts.GameEvents.ScriptableObjects;
 using Assets.Scripts.Resources;
 using Assets.Scripts.States.PlayableCharacterMovementStates.Implementations;
 using Assets.Scripts.States.PlayableCharacterMovementStates.Interfaces;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
 public class PlayableCharacterController : MonoBehaviour
@@ -21,11 +23,29 @@ public class PlayableCharacterController : MonoBehaviour
     [field: SerializeField]
     public Animator Animator { get; private set; }
 
+    [field: SerializeField]
+    public PlayerInput PlayerInput { get; private set; }
+
+    [field: Header("--- Events ---")]
+    [field: SerializeField]
+    public GameObjectGameEvent OnNewPlayableCharacterComeInGame { get; private set; }
+
+    [field: SerializeField]
+    public PlayerInputGameEvent OnPlayableCharacterGamePause { get; private set; }
+
+    [field: SerializeField]
+    public PlayerInputGameEvent OnPlayableCharacterGameResume { get; private set; }
+
     private Vector2 _inputMoveValue;
     private float _refVelocity;
     private IPlayableCharacterMovementState _currentMovementState = new PlayableCharacterStopState();
     private IPlayableCharacterMovementState _nextMovementState;
     private bool _isAiming = false;
+
+    private void Start()
+    {
+        OnNewPlayableCharacterComeInGame.Raise(gameObject);
+    }
 
     private void FixedUpdate()
     {
@@ -69,5 +89,21 @@ public class PlayableCharacterController : MonoBehaviour
     public void StopAim()
     {
         _isAiming = false;
+    }
+
+    public void GamePause(CallbackContext context)
+    {
+        if (context.started)
+        {
+            OnPlayableCharacterGamePause.Raise(PlayerInput);
+        }
+    }
+
+    public void GameResume(CallbackContext context)
+    {
+        if (context.started)
+        {
+            OnPlayableCharacterGameResume.Raise(PlayerInput);
+        }
     }
 }
