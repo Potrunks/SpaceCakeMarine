@@ -19,5 +19,8 @@ namespace Assets.Scripts.ScriptableObjects
 
         [field: SerializeField]
         public float FireRate { get; private set; }
+
+        [field: SerializeField]
+        public GameObject ImpactEffectPrefab { get; private set; }
     }
 }

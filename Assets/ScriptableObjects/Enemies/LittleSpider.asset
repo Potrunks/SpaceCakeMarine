@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: LittleSpider
   m_EditorClassIdentifier: 
   <Name>k__BackingField: LittleSpider
-  <MaxHealthPoint>k__BackingField: 100
+  <MaxHealthPoint>k__BackingField: 50
   <Force>k__BackingField: 10

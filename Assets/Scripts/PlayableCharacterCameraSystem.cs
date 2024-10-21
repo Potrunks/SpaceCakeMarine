@@ -97,6 +97,9 @@ public class PlayableCharacterCameraSystem : MonoBehaviour
         Ray rayFromScreenCenter = Camera.ScreenPointToRay(screenCenter);
         if (Physics.Raycast(rayFromScreenCenter, out RaycastHit hit))
         {
+            GameObject impact = Instantiate(gun.ImpactEffectPrefab, hit.point, hit.transform.rotation);
+            impact.transform.LookAt(transform);
+
             EnemyDamageSystem enemyDamageSystem = hit.transform.gameObject.GetComponentInParent<EnemyDamageSystem>();
             if (enemyDamageSystem != null)
             {
